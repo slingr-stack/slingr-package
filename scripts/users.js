@@ -39,7 +39,7 @@ exports.update = function(user) {
 };
 
 /**
- * Deletes an user from the database.
+ * Deletes a user from the database.
  *
  * @param {sys.data.Record} user - The user to be deleted.
  * @returns {sys.data.Record} - The deleted record.
@@ -52,10 +52,10 @@ exports.remove = function(user) {
 // read operations
 
 /**
- * Finds an user by its ID.
+ * Finds a user by its ID.
  *
  * @param {string} userId - ID of the user to find.
- * @returns {sys.data.Record} - An user record or null if not found.
+ * @returns {sys.data.Record} - a user record or null if not found.
  * @throws {sys.exceptions.ScriptException} if a runtime error happened.
  */
 exports.findById = function(userId) {
