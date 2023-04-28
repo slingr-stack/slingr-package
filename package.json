@@ -1,0 +1,14 @@
+{
+  "label": "Slingr",
+  "name": "slingr",
+  "description": "Set of utilities to help with application development in the Slingr low code platform.",
+  "dependencies": [],
+  "configuration":[],
+  "events": [],
+  "metadata": [
+    {
+      "type": "script",
+      "path": "/scripts/users.js"
+    }
+  ]
+}
