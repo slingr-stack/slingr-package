@@ -143,7 +143,7 @@ exports.containsGroup = function(user, groupIdOrNameOrLabel) {
 };
 
 /**
- * Adds a group to user.
+ * Adds a group to a user.
  *
  * @param {sys.data.Record} user - User record to add a group.
  * @param {string} groupIdOrNameOrLabel - The id, name or label of the group to be added.
