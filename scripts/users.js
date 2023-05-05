@@ -18,7 +18,7 @@ exports.new = function() {
  * @throws {sys.exceptions.ScriptException} if a runtime error happened.
  */
 exports.create = function(user) {
-    if (!user || user.__class__ !== 'Data') {
+    if (dependencies.utils.commons.isEmpty(user) || user.__class__ !== 'Data') {
         new sys.exceptions.ScriptException(sys.exceptions.BAD_REQUEST_ERROR, 'Invalid user').throw();
     }
     return sys.data.save(user);
@@ -32,7 +32,7 @@ exports.create = function(user) {
  * @throws {sys.exceptions.ScriptException} if a runtime error happened.
  */
 exports.update = function(user) {
-    if (!user || user.__class__ !== 'Data') {
+    if (dependencies.utils.commons.isEmpty(user) || user.__class__ !== 'Data') {
         new sys.exceptions.ScriptException(sys.exceptions.BAD_REQUEST_ERROR, 'Invalid user').throw();
     }
     return sys.data.save(user);
@@ -162,63 +162,6 @@ exports.addGroup = function(user, groupIdOrNameOrLabel, primary) {
  */
 exports.removeGroup = function(user, groupIdOrNameOrLabel) {
     return sys.users.removeGroup(user, groupIdOrNameOrLabel);
-};
-
-// helpers
-// TODO: move this to a new package
-
-let isEmpty = function (obj) {
-    if (obj === null || typeof obj === 'undefined') {
-        return true;
-    }
-    if (typeof obj === 'string' && (!obj || !obj.trim())) {
-        return true;
-    }
-    if (Array.isArray(obj) && obj.length == 0) {
-        return true;
-    }
-    if (typeof obj === 'object' && !Array.isArray(obj)) {
-        for (var name in obj) {
-            return false;
-        }
-        return true;
-    }
-    return false;
-};
-
-let isNotEmpty = function (obj) {
-    return !isEmpty(obj);
-};
-
-let isNumber = function (numberValue) {
-    return !isNaN(parseFloat(numberValue)) && isFinite(numberValue);
-};
-
-let isInteger = function (n, options) {
-    if (options && options.allowString && typeof n === 'string') {
-        var oldN = n;
-        n = parseInt(n);
-        return oldN === '' + n && Number(n) === n && n % 1 === 0;
-    } else {
-        return Number(n) === n && n % 1 === 0;
-    }
-};
-
-let isBoolean = function (booleanValue) {
-    return booleanValue == true || booleanValue == false;
-};
-
-let isObject = function (value) {
-    return !isEmpty(value) && typeof (value) === 'object';
-};
-
-let isString = function (value) {
-    return (typeof value === 'string');
-};
-
-let isFunction = function (object) {
-    let getType = {};
-    return !isEmpty(object) && getType.toString.call(object) === '[object Function]';
 };
 
 

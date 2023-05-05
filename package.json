@@ -2,7 +2,13 @@
   "label": "Slingr",
   "name": "slingr",
   "description": "Set of utilities to help with application development in the Slingr low code platform.",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "type": "package",
+      "name": "utils",
+      "version": "v0.0.2"
+    }
+  ],
   "configuration":[],
   "events": [],
   "metadata": [
