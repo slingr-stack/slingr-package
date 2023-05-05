@@ -9,7 +9,11 @@ Set of utilities to help with application development in the Slingr low code pla
 Once you have installed the package you can start using user helpers like this:
 
 ```js
-
+let query = pkg.slingr.users.createQuery();
+query.field('email').equals('rolando.mesa@slingr.io');
+let user = pkg.slingr.users.findOne(query);
+user.field('company').val('ACME');
+pkg.slingr.users.update(user);
 ```
 
 ## Javascript API
