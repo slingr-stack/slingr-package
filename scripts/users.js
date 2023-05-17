@@ -18,7 +18,7 @@ exports.new = function() {
  * @throws {sys.exceptions.ScriptException} if a runtime error happened.
  */
 exports.create = function(user) {
-    if (dependencies.utils.commons.isEmpty(user) || user.__class__ !== 'Data') {
+    if (dependencies.utils.commons().isEmpty(user) || user.__class__ !== 'Data') {
         new sys.exceptions.ScriptException(sys.exceptions.BAD_REQUEST_ERROR, 'Invalid user').throw();
     }
     return sys.data.save(user);
@@ -32,7 +32,7 @@ exports.create = function(user) {
  * @throws {sys.exceptions.ScriptException} if a runtime error happened.
  */
 exports.update = function(user) {
-    if (dependencies.utils.commons.isEmpty(user) || user.__class__ !== 'Data') {
+    if (dependencies.utils.commons().isEmpty(user) || user.__class__ !== 'Data') {
         new sys.exceptions.ScriptException(sys.exceptions.BAD_REQUEST_ERROR, 'Invalid user').throw();
     }
     return sys.data.save(user);
