@@ -1,3 +1,6 @@
+/****************************************************
+ Helpers
+ ****************************************************/
 
 // write operations
 
@@ -163,9 +166,3 @@ exports.addGroup = function(user, groupIdOrNameOrLabel, primary) {
 exports.removeGroup = function(user, groupIdOrNameOrLabel) {
     return sys.users.removeGroup(user, groupIdOrNameOrLabel);
 };
-
-
-
-
-
-

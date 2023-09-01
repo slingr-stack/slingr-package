@@ -1,12 +1,27 @@
-# Slingr package
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Last Updated</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Slingr package</td>
+        <td>September 1, 2023</td>
+        <td>Detailed description of the Slingr Package.</td>
+    </tr>
+    </tbody>
+</table>
 
-## Overview
+# Overview
 
-Set of utilities to help with application development in the Slingr low code platform.
+Set of utilities to help with application development in the Slingr low-code platform.
 
 ## Quick start
 
-Once you have installed the package you can start using user helpers like this:
+Once you have installed the package, you can start using user helpers like this:
 
 ```js
 let query = pkg.slingr.users.createQuery();
@@ -16,15 +31,15 @@ user.field('company').val('ACME');
 pkg.slingr.users.update(user);
 ```
 
-## Javascript API
+# Javascript API
 
 The following utilities are available in this package.
 
-### Users management
-This is a set of utilities that allows to manage users data.
+## Users management
+This is a set of utilities that allows to manage users' data.
 
-#### Create a new user
-In order to create a new user record in the database the following sentence can be used:
+### Create a new user
+In order to create a new user record in the database, the following sentence can be used:
 ```js
 let createdUser = pkg.slingr.users.create(user);
 ```
@@ -39,7 +54,7 @@ pkg.slingr.users.addGroup(user, 'Admins', true);
 pkg.slingr.users.create(user);
 ```
 
-#### Update existing user
+### Update existing user
 To update an existing user in the database:
 ```js
 let updatedUser = pkg.slingr.users.update(user);
@@ -53,7 +68,7 @@ user.field('company').val('ACME');
 pkg.slingr.users.update(user);
 ```
 
-#### Remove existing user
+### Remove existing user
 To remove an existing user:
 ```js
 let removedUser = pkg.slingr.users.remove(user);
@@ -66,22 +81,22 @@ let user = pkg.slingr.users.findOne(query);
 pkg.slingr.users.remove(user);
 ```
 
-#### Find user by ID
+### Find user by ID
 Finds a user by its ID. To look up a user by ID the following sentence can be used:
 ```js
 let user = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
 ```
 
-#### Find one user
-Finds a user using filtering rules. To look up a user by filtering rules the following sentence can be used:
+### Find one user
+Finds a user using filtering rules. To look up a user by filtering rules, the following sentence can be used:
 ```js
 let query = pkg.slingr.users.createQuery();
 query.field('email').equals('rolando.mesa@slingr.io');
 let user = pkg.slingr.users.findOne(query);
 ```
 
-#### Find users
-Finds a list of users. To find a list of users the following sentences can be used:
+### Find users
+Find a list of users. To find a list of users, the following sentences can be used:
 ```js
 let query = pkg.slingr.users.createQuery();
 query.field('status').equals('ACTIVE');
@@ -92,22 +107,22 @@ while (users.hasNext()) {
 }
 ```
 
-#### Activate user
+### Activate user
 Changes the status of specified user to active.
 ```js
 let inactiveUser = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
 let activeUser = pkg.slingr.users.activate(inactiveUser);
 ```
 
-#### Deactivate user
+### Deactivate user
 Changes the status of specified user to inactive.
 ```js
 let activeUser = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
 let inactiveUser = pkg.slingr.users.deactivate(inactiveUser);
 ```
 
-#### Reset user password
-Resets the password of a specific user. In case the user is blocked then it will be reactivated.
+### Reset user password
+Reset the password of a specific user. In case the user is blocked, then it will be reactivated.
 ```js
 let query = pkg.slingr.users.createQuery();
 query.field('email').equals('rolando.mesa@slingr.io');
@@ -115,8 +130,8 @@ let user = pkg.slingr.users.findOne(query);
 pkg.slingr.users.resetPassword(user);
 ```
 
-#### User contains group
-Checks if user belongs to the specified group.
+### User contains group
+Check if the user belongs to the specified group.
 ```js
 let query = pkg.slingr.users.createQuery();
 query.field('email').equals('rolando.mesa@slingr.io');
@@ -126,8 +141,8 @@ if (pkg.slingr.users.containsGroup('admins')) {
 }
 ```
 
-#### User add group
-Adds a group to a user.
+### User add group
+Add a group to a user.
 ```js
 let query = pkg.slingr.users.createQuery();
 query.field('email').equals('rolando.mesa@slingr.io');
@@ -136,7 +151,7 @@ pkg.slingr.users.addGroup(user, 'admins', true);
 pkg.slingr.users.update(user);
 ```
 
-#### User remove group
+### User remove group
 Deletes a group from the user.
 ```js
 let query = pkg.slingr.users.createQuery();
@@ -146,5 +161,15 @@ pkg.slingr.users.removeGroup(user, 'admins');
 pkg.slingr.users.update(user);
 ```
 
+## Dependencies
+* Utils Package (~v1.0.2)
 
+# About SLINGR
 
+SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
+
+[More info about SLINGR](https://slingr.io)
+
+# License
+
+This package is licensed under the Apache License 2.0. See the `LICENSE` file for more details.
