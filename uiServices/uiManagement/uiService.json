@@ -1,8 +1,8 @@
 {
-  "name": "ui",
+  "name": "uiManagement",
   "label": {
     "translation": {
-      "en": "ui"
+      "en": "uiManagement"
     }
   },
   "places": [

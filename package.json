@@ -24,8 +24,8 @@
     },
     {
       "type": "uiService",
-      "namespace": "ui",
-      "path": "/uiServices/ui"
+      "namespace": "uiManagement",
+      "path": "/uiServices/uiManagement"
     }
   ]
 }

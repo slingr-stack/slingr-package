@@ -7,7 +7,7 @@ exports.openInNewTab = function (url) {
     var userId = sys.context.getCurrentUserRecord().id();
     sys.logs.info('[ui] User id: '+JSON.stringify(userId));
     sys.ui.sendMessage({
-        scope: 'uiService:slingr.ui',
+        scope: 'uiService:slingr.uiManagement',
         name: 'openInNewTab',
         target: 'users',
         targetUsers: [userId],
@@ -20,7 +20,7 @@ exports.openInCurrentTab = function (url) {
     var userId = sys.context.getCurrentUserRecord().id();
     sys.logs.info('[ui] User id: '+JSON.stringify(userId));
     sys.ui.sendMessage({
-        scope: 'uiService:slingr.ui',
+        scope: 'uiService:uiManagement',
         name: 'openInCurrentTab',
         target: 'users',
         targetUsers: [userId],
