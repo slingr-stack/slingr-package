@@ -18,6 +18,11 @@
       "path": "/scripts/users.js"
     },
     {
+      "type": "script",
+      "namespace": "ui",
+      "path": "/scripts/ui.js"
+    },
+    {
       "type": "uiService",
       "namespace": "ui",
       "path": "/uiServices/ui"
