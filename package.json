@@ -21,11 +21,6 @@
       "type": "script",
       "namespace": "ui",
       "path": "/scripts/ui.js"
-    },
-    {
-      "type": "uiService",
-      "namespace": "uiManagement",
-      "path": "/uiServices/uiManagement"
     }
   ]
 }
