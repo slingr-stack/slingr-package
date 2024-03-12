@@ -2,26 +2,28 @@
  UI
  ****************************************************/
 
-exports.openInNewTab = function (params) {
+exports.openInNewTab = function (url) {
     sys.logs.info('[ui] Open in new tab');
-    sys.logs.info('[ui] User id: '+JSON.stringify(sys.context.getCurrentUserRecord().id()));
+    var userId = sys.context.getCurrentUserRecord().id();
+    sys.logs.info('[ui] User id: '+JSON.stringify(userId));
     sys.ui.sendMessage({
         scope: 'uiService:slingr.ui',
         name: 'openInNewTab',
-        config: {
-            url: params.url,
-        }
+        target: 'users',
+        targetUsers: [userId],
+        url: url,
     });
 }
 
-exports.openInCurrentTab = function (params) {
+exports.openInCurrentTab = function (url) {
     sys.logs.info('[ui] Open in new tab');
-    sys.logs.info('[ui] User id: '+JSON.stringify(pkgConfig.id));
+    var userId = sys.context.getCurrentUserRecord().id();
+    sys.logs.info('[ui] User id: '+JSON.stringify(userId));
     sys.ui.sendMessage({
-        scope: 'uiService:ui.ui',
+        scope: 'uiService:slingr.ui',
         name: 'openInCurrentTab',
-        config: {
-            url: params.url,
-        }
+        target: 'users',
+        targetUsers: [userId],
+        url: url,
     });
 }
