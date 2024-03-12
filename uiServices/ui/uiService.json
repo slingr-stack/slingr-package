@@ -1,0 +1,23 @@
+{
+  "name": "ui",
+  "label": {
+    "translation": {
+      "en": "UI"
+    }
+  },
+  "places": [
+    "APP"
+  ],
+  "dependencies": [],
+  "byGroups": false,
+  "functions": [
+    {
+      "label": "Open in new tab",
+      "name": "openInNewTab"
+    },
+    {
+      "label": "Open in current tab",
+      "name": "openInCurrentTab"
+    }
+  ]
+}
