@@ -4,7 +4,7 @@
 
 exports.openInNewTab = function (params) {
     sys.logs.info('[ui] Open in new tab');
-    sys.logs.info('[ui] User id: '+JSON.stringify(pkgConfig.id));
+    sys.logs.info('[ui] User id: '+JSON.stringify(sys.context.getCurrentUserRecord().id()));
     sys.ui.sendMessage({
         scope: 'uiService:slingr.ui',
         name: 'openInNewTab',
