@@ -204,12 +204,12 @@
 		{
 			"type": "script",
 			"namespace": "httpClient",
-			"path": "/scripts/httpClient"
+			"path": "/scripts/httpClient.js"
 		},
 		{
 			"type": "script",
 			"namespace": "utils",
-			"path": "/scripts/utils"
+			"path": "/scripts/utils.js"
 		},
 		{
 			"type": "listener",
