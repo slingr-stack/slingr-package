@@ -79,7 +79,7 @@
 					{
 						"label": "Events to notify",
 						"name": "entityEventsToNotify",
-						"type": "buttonsGroup",
+						"type": "dropDown",
 						"multiplicity": "many",
 						"required": "config.entitiesToNotifyEvents[_currentIndex].entity",
 						"visibility": "config.entitiesToNotifyEvents[_currentIndex].entity",
