@@ -1,26 +1,129 @@
 {
-  "label": "Slingr Package",
-  "name": "slingr",
-  "description": "Set of utilities to help with application development in the Slingr low code platform.",
-  "dependencies": [
-    {
-      "type": "package",
-      "name": "utils",
-      "version": "^v1.0.2"
-    }
-  ],
-  "configuration":[],
-  "events": [],
-  "metadata": [
-    {
-      "type": "script",
-      "namespace": "users",
-      "path": "/scripts/users.js"
-    },
-    {
-      "type": "script",
-      "namespace": "ui",
-      "path": "/scripts/ui.js"
-    }
-  ]
+	"label": "Slingr Package",
+	"name": "slingr",
+	"description": "Set of utilities to help with application development in the Slingr low code platform.",
+	"dependencies": [
+		{
+			"type": "service",
+			"name": "http",
+			"version": "v1.6.3",
+			"instanceId": "shared"
+		},
+		{
+			"type": "package",
+			"name": "utils",
+			"version": "^v1.0.2"
+		}
+	],
+	"configuration": [
+        {
+            "label": "Enable Webhooks",
+            "name": "enableWebhook",
+            "type": "toggle",
+            "defaultValue": false
+        },
+		{
+			"label": "Webhooks type",
+			"name": "webhooksType",
+			"type": "buttonsGroup",
+			"typeOptions": {
+				"possibleValues": [
+					{
+						"label": "Fixed",
+						"name": "fixed"
+					},
+					{
+						"label": "Dynamic",
+						"name": "dynamic"
+					}
+				]
+			}
+		},
+		{
+			"label": "Webhooks",
+			"name": "webhooks",
+			"type": "fieldsGroup",
+			"required": true,
+			"multiplicity": "many",
+			"visibility": "config.webhooksType == 'fixed'",
+			"typeOptions": {
+				"fields": [
+					{
+						"label": "URL",
+						"name": "url",
+						"type": "text",
+						"required": true,
+						"typeOptions": {
+							"validation": "url"
+						}
+					},
+					{
+						"label": "Verification token",
+						"name": "verificationToken",
+						"type": "text"
+					}
+				]
+			}
+		},
+		{
+			"label": "Webhooks entity",
+			"name": "webhooksEntity",
+			"type": "entity",
+			"required": true,
+			"visibility": "config.webhooksType == 'dynamic'"
+		},
+		{
+			"label": "Webhooks URL field",
+			"name": "webhooksUrlField",
+			"type": "entityField",
+			"required": true,
+			"visibility": "config.webhooksType == 'dynamic'",
+			"typeOptions": {
+				"entity": "@config.webhooksEntity",
+				"filterTypes": [
+					"url"
+				]
+			}
+		},
+		{
+			"label": "Webhooks verification token field",
+			"name": "webhooksVerificationTokenField",
+			"type": "entityField",
+			"visibility": "config.webhooksType == 'dynamic'",
+			"typeOptions": {
+				"entity": "@config.webhooksEntity",
+				"filterTypes": [
+					"text"
+				]
+			}
+		}
+	],
+	"events": [],
+	"metadata": [
+		{
+			"type": "script",
+			"namespace": "users",
+			"path": "/scripts/users.js"
+		},
+		{
+			"type": "script",
+			"namespace": "ui",
+			"path": "/scripts/ui.js"
+		},
+		{
+			"type": "script",
+			"namespace": "httpClient",
+			"path": "/scripts/httpClient.js"
+		},
+		{
+			"type": "script",
+			"namespace": "utils",
+			"path": "/scripts/utils.js"
+		},
+		{
+			"type": "listener",
+			"namespace": "webhookNotifier",
+			"path": "/listeners/webhookNotifier.js"
+		}
+	]
 }

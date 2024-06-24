@@ -9,7 +9,7 @@
     <tbody>
     <tr>
         <td>Slingr package</td>
-        <td>September 1, 2023</td>
+        <td>June 24, 2024</td>
         <td>Detailed description of the Slingr Package.</td>
     </tr>
     </tbody>
@@ -18,6 +18,7 @@
 # Overview
 
 Set of utilities to help with application development in the Slingr low-code platform.
+Webhook Notifier: allows notifying to other applications about events happening into the running SLINGR application.
 
 ## Quick start
 
@@ -31,6 +32,51 @@ user.field('company').val('ACME');
 pkg.slingr.users.update(user);
 ```
 
+## Configuration
+
+Before using the package, you need to create a user in the SLINGR app you want to propagate events.
+
+This package allows setting multiple targets to notify about events happening on SLINGR App.
+
+### Webhook type
+
+Indicates the type of webhooks that endpoint will manage. 
+`Fixed` means that a list of URL's and their tokens will be set statically.
+In the other hand, `Dynamic` allows to use records of an entity as webhook information.
+
+#### Webhooks
+
+List of static webhooks' information. Available when `Webhooks type` is `Fixed`.
+
+##### URL
+
+URL of target webhook to call when event comes.
+
+##### Verification token
+
+Token to pass as header to webhook target when the event arrives.
+
+#### Webhooks entity
+
+Entity into SLINGR app whose records contain webhook target information.
+
+#### Webhooks URL field
+
+Field into records of previous entity that contains the URL of target webhook.
+
+#### Webhooks token field
+
+Field into records of previous entity that contains the token to send to target webhook.
+
+## Configuration Parameters
+Field names to use the parameters with dynamic configuration.
+
+Name (Dynamic Config param name) - Type
+* Client Id (clientId) - Text
+* Client Secret (clientSecret) - Text
+* Scope (scope) - Text
+* State (state) - Text
+
 # Javascript API
 
 The following utilities are available in this package.
@@ -39,7 +85,7 @@ The following utilities are available in this package.
 This is a set of utilities that allows to manage users' data.
 
 ### Create a new user
-In order to create a new user record in the database, the following sentence can be used:
+To create a new user record in the database, the following sentence can be used:
 ```js
 let createdUser = pkg.slingr.users.create(user);
 ```
@@ -166,7 +212,8 @@ pkg.slingr.users.update(user);
 
 # About SLINGR
 
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
+SLINGR is a low-code rapid application development platform that speeds up development, 
+with robust architecture for integrations and executing custom workflows and automation.
 
 [More info about SLINGR](https://slingr.io)
 
