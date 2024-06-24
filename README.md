@@ -9,7 +9,7 @@
     <tbody>
     <tr>
         <td>Slingr package</td>
-        <td>June 5, 2024</td>
+        <td>June 24, 2024</td>
         <td>Detailed description of the Slingr Package.</td>
     </tr>
     </tbody>
@@ -37,50 +37,6 @@ pkg.slingr.users.update(user);
 Before using the package, you need to create a user in the SLINGR app you want to propagate events.
 
 This package allows setting multiple targets to notify about events happening on SLINGR App.
-
-### Notifications for all entities
-
-This indicator means that the package will notify about events happening in records of all entities of your application. 
-Be aware to leave this value in `true` since an overload of notifications could happen.
-
-### Events to notify
-
-It is only available when the previous field is set as `true`. 
-This field specifies the type of events to notify, 
-by default, it considers all events, but the developer can choose some of them.
-
-#### Create
-
-Will notify every time a record is created. The data sent will include `record` information.
-
-#### Update
-
-Will notify every time a record is changed. 
-The data sent will include `record` and `oldRecord` information. 
-Keep in mind this event will notify to listeners every time record is saved, 
-there are changes or not, so be aware when enabling these options and records are saved several times in short time intervals.
-
-#### Delete
-
-Will notify every time a record is deleted. The data sent will include `oldRecord` information.
-
-#### Actions
-
-Will notify every time any action is executed over a record. 
-The data sent will include `record` and `oldRecord` information.
-
-### Entities to notify events
-
-It is only available when the previous field is set as `false`. 
-Allows specifying a list of entities and events to notify.
-
-#### Entity
-
-Entity into the SLINGR app whose records manipulation will trigger events propagation into the endpoint.
-
-#### Events to notify
-
-Same as the configured for all entities, but this only applies for the entity in the previous field.
 
 ### Webhook type
 
@@ -112,7 +68,14 @@ Field into records of previous entity that contains the URL of target webhook.
 
 Field into records of previous entity that contains the token to send to target webhook.
 
+## Configuration Parameters
+Field names to use the parameters with dynamic configuration.
 
+Name (Dynamic Config param name) - Type
+* Client Id (clientId) - Text
+* Client Secret (clientSecret) - Text
+* Scope (scope) - Text
+* State (state) - Text
 
 # Javascript API
 
