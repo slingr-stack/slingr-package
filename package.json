@@ -19,7 +19,7 @@
       "name": "authenticationMethod",
       "label": "Authentication Method",
       "required": true,
-      "defaultValue": "oauth",
+      "defaultValue": "password",
       "type": "buttonsGroup",
       "typeOptions": {
         "allowCustom": false,
