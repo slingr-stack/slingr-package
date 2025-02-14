@@ -16,18 +16,19 @@
 	],
 	"configuration": [
 		{
-			"label": "Information",
-			"name": "information",
+			"label": "App settings",
+			"name": "appSettings",
 			"type": "info",
 			"typeOptions": {
-				"alertType": "warning"
+				"alertType": "info"
 			},
 			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.They are optional as the package has functionalities on its own."
 		},
 		{
 			"name": "appName",
 			"label": "App name",
-			"type": "text"
+			"type": "text",
+			"required": "!!(config.appName)"
 		},
 		{
 			"name": "appEnv",
