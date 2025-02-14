@@ -156,7 +156,6 @@ const API_URL = "https://"+config.get('appName')+".slingrs.io/"+config.get('appE
 let Slingr = function (options) {
     options = options || {};
     options= setApiUri(options);
-    options= setAuthorization(options);
     options= setRequestHeaders(options);
     return options;
 }
