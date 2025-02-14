@@ -1,158 +1,84 @@
 
 # Overview
 
-Set of utilities to help with application development in the Slingr low-code platform.
+Repo: [https://github.com/slingr-stack/slingr-package](https://github.com/slingr-stack/slingr-package)
 
-## Quick start
+This is a package that enables integration between Slingr applications and add a set of utilities to help with app development.
 
-Once you have installed the package, you can start using user helpers like this:
+This [package](https://platform-docs.slingr.io/dev-reference/data-model-and-logic/packages/) allows direct access to the 
+[Runtime Rest API](https://platform-docs.slingr.io/dev-reference/rest-apis/apps-api/).
 
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-user.field('company').val('ACME');
-pkg.slingr.users.update(user);
-```
+Some features available in this package are:
+
+- Uses user/password and api token authentication mechanisms.
+- Helpers for API methods.
+- UI messages for redirect on local app.
+
+## Configuration
+
+For using the UI functions, it is not necessary to connect to an external app. 
+However, if you choose to do so, you must configure which app you will connect to.
+
+### App name
+**Name**: `appName`
+**Type**: text
+**Mandatory**: false
+
+### App env
+**Name**: `appEnv`
+**Type**: text
+**Mandatory**: only if a appName is defined
+**Values** dev, staging, prod
+
+### Authentication method
+
+**Name**: `authorizationMethod`
+**Type**: text
+**Mandatory**: only if a appName is defined
+**Values** userPassword, apiKey
+
+### User
+
+**Name**: `user`
+**Type**: text
+**Mandatory**: only if a appName is defined and authorizationMethod is equals to userPassword
+
+### Password
+
+**Name**: `password`
+**Type**: text
+**Mandatory**: only if a appName is defined and authorizationMethod is equals to userPassword
+
+### API key
+This token could be generated on builder [API Token](https://platform-docs.slingr.io/dev-reference/environment-settings/api-tokens/) 
+or in scripts [OTP Code](https://platform-docs.slingr.io/dev-reference/scripting/sys.auth/#createtokenidoremailuser-code)
+
+**Name**: `apiKey`
+**Type**: text
+**Mandatory**: only if a appName is defined and authorizationMethod is equals to apiKey
 
 # Javascript API
 
-The following utilities are available in this package.
+You can make `GET`,`POST`,`DELETE`,`PUT` and `HEAD` requests to the Runtime API.
 
-## Users management
-This is a set of utilities that allows to manage users' data.
-
-### Create a new user
-In order to create a new user record in the database, the following sentence can be used:
-```js
-let createdUser = pkg.slingr.users.create(user);
-```
-This is a complete flow example to create a user:
-```js
-let user = pkg.slingr.users.new();
-user.field('firstName').val('Rolando');
-user.field('lastName').val('Mesa');
-user.field('email').val('rolando.mesa@slingr.io');
-user.field('company').val('ABC');
-pkg.slingr.users.addGroup(user, 'Admins', true);
-pkg.slingr.users.create(user);
-```
-
-### Update existing user
-To update an existing user in the database:
-```js
-let updatedUser = pkg.slingr.users.update(user);
-```
-This is a complete flow example to update a user:
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-user.field('company').val('ACME');
-pkg.slingr.users.update(user);
-```
-
-### Remove existing user
-To remove an existing user:
-```js
-let removedUser = pkg.slingr.users.remove(user);
-```
-This is a complete flow example to delete a user:
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-pkg.slingr.users.remove(user);
-```
-
-### Find user by ID
-Finds a user by its ID. To look up a user by ID the following sentence can be used:
-```js
-let user = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
-```
-
-### Find one user
-Finds a user using filtering rules. To look up a user by filtering rules, the following sentence can be used:
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-```
-
-### Find users
-Find a list of users. To find a list of users, the following sentences can be used:
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('status').equals('ACTIVE');
-let users = pkg.slingr.users.find(query);
-while (users.hasNext()) {
-    let user = users.next();
-    log(user.label());
-}
-```
-
-### Activate user
-Changes the status of specified user to active.
-```js
-let inactiveUser = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
-let activeUser = pkg.slingr.users.activate(inactiveUser);
-```
-
-### Deactivate user
-Changes the status of specified user to inactive.
-```js
-let activeUser = pkg.slingr.users.findById('644c0fbb0cda1f395232bbf5');
-let inactiveUser = pkg.slingr.users.deactivate(inactiveUser);
-```
-
-### Reset user password
-Reset the password of a specific user. In case the user is blocked, then it will be reactivated.
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-pkg.slingr.users.resetPassword(user);
-```
-
-### User contains group
-Check if the user belongs to the specified group.
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-if (pkg.slingr.users.containsGroup('admins')) {
-    // do something
-}
-```
-
-### User add group
-Add a group to a user.
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-pkg.slingr.users.addGroup(user, 'admins', true);
-pkg.slingr.users.update(user);
-```
-
-### User remove group
-Deletes a group from the user.
-```js
-let query = pkg.slingr.users.createQuery();
-query.field('email').equals('rolando.mesa@slingr.io');
-let user = pkg.slingr.users.findOne(query);
-pkg.slingr.users.removeGroup(user, 'admins');
-pkg.slingr.users.update(user);
+```javascript
+log(JSON.stringify(pkg.slingr.api.testConnection()));
+log(JSON.stringify(pkg.slingr.api.get('/data/entityName/count')));
+log(JSON.stringify(pkg.slingr.api.post('/data/entityName'), {body: {att1: 'val1'}}));
+log(JSON.stringify(pkg.slingr.api.getLogs()));
+log(JSON.stringify(pkg.slingr.api.getJobs()));
 ```
 
 ## Dependencies
 * Utils Package
+* HTTP Service
 
-# About SLINGR
+# About Slingr
 
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
+SLINGR is a low-code rapid application development platform that accelerates development, 
+with robust architecture for integrations and executing custom workflows and automation.
 
-[More info about SLINGR](https://slingr.io)
+[More info about Singr](https://slingr.io)
 
 # License
 

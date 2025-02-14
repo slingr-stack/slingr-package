@@ -58,8 +58,9 @@
 		},
 		{
 			"name": "authenticationMethod",
-			"label": "Authentication Method",
-			"required": true,
+			"label": "Authentication method",
+			"required": "!!(config.appName)",
+			"visibility": "!!(config.appName)",
 			"value": "userPassword",
 			"type": "buttonsGroup",
 			"typeOptions": {
