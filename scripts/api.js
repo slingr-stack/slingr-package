@@ -36,6 +36,11 @@ for (let key in httpDependency) {
  Public API - Generic Functions
  ****************************************************/
 
+exports.testConnection = function () {
+    const path = "/status/system/health";
+    return httpService.get(Slingr(checkHttpOptions(path)));
+}
+
 /**
  * Sends an HTTP GET request to the specified URL with the provided HTTP options.
  *
@@ -139,6 +144,12 @@ function isObject (obj) {
 let stringType = Function.prototype.call.bind(Object.prototype.toString)
 
 /****************************************************
+ Global constants
+ ****************************************************/
+
+const API_URL = "https://"+config.get('appName')+".slingrs.io/"+config.get('appEnv')+"/runtime/api"
+
+/****************************************************
  Configurator
  ****************************************************/
 
@@ -156,7 +167,6 @@ let Slingr = function (options) {
 
 function setApiUri(options) {
     let url = options.path || "";
-    const API_URL = "https://"+config.get('appName')+".slingrs.io/"+config.get('appEnv')+"/runtime/api"
     options.url = API_URL + url;
     sys.logs.debug('[slingr] Set url: ' + options.path + "->" + options.url);
     return options;
@@ -168,10 +178,40 @@ function setRequestHeaders(options) {
         sys.logs.debug('[slingr] Set header apikey');
         headers = mergeJSON(headers, {"Authorization": "API-Key " + config.get("text")});
     }
+    if (config.get("authenticationMethod") === "userPassword") {
+        headers = mergeJSON(headers, {"token": getAccessTokenForUser()});
+    }
     headers = mergeJSON(headers, {"Content-Type": "application/json"});
-
     options.headers = headers;
     return options;
+}
+
+function getAccessTokenForUser() {
+    sys.logs.info('[slingr] Getting access token');
+    let token = sys.storage.get('installationInfo-slingr', {decrypt: true});
+    if (!token) {
+        sys.logs.info('[slingr] Access token not found. Getting new token');
+        const res = httpService.post(
+            {
+                url: API_URL + "/auth/login",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: {
+                    email: config.get('user').trim(),
+                    password: config.get('password')
+                }
+            });
+        token = res.token;
+        if (token === null || token === undefined || (typeof token === 'string' && token.trim() === '')) {
+            sys.logs.error("[slingr] The token is null or empty");
+            return null;
+        }
+        sys.logs.info('[slingr] Saving new token');
+        sys.storage.put('installationInfo-slingr', token, {encrypt: true});
+    }
+    return token;
 }
 
 function mergeJSON (json1, json2) {
