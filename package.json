@@ -26,6 +26,12 @@
 			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.They are optional as the package has functionalities on its own."
 		},
 		{
+			"label": "Simple",
+			"name": "simpleLabel",
+			"type": "label",
+			"value": "Sample Complex endpoint"
+		},
+		{
 			"name": "appName",
 			"label": "App name",
 			"type": "text"
