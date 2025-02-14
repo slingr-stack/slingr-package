@@ -16,17 +16,55 @@
   ],
   "configuration":[
     {
+      "name": "appName",
+      "label": "App name",
+      "type": "text"
+    },
+    {
+      "name": "appEnv",
+      "label": "App env",
+      "required": "!!(config.appName)",
+      "visibility": "!!(config.appName)",
+      "defaultValue": "prod",
+      "type": "buttonsGroup",
+      "typeOptions": {
+        "allowCustom": false,
+        "possibleValues": [
+          {
+            "label": "Development",
+            "name": "dev"
+          },
+          {
+            "label": "Staging",
+            "name": "staging"
+          },
+          {
+            "label": "Production",
+            "name": "prod"
+          }
+        ]
+      }
+    },
+    {
+      "name": "user",
+      "label": "User",
+      "description": "User of the other app to authenticate",
+      "required": "true",
+      "type": "text",
+      "visibility": "config.authenticationMethod === 'userPassword'"
+    },
+    {
       "name": "authenticationMethod",
       "label": "Authentication Method",
       "required": true,
-      "defaultValue": "password",
+      "defaultValue": "userPassword",
       "type": "buttonsGroup",
       "typeOptions": {
         "allowCustom": false,
         "possibleValues": [
           {
             "label": "Username/Password",
-            "name": "password"
+            "name": "userPassword"
           },
           {
             "label": "API Key",
@@ -34,14 +72,48 @@
           }
         ]
       }
+    },
+    {
+      "name": "user",
+      "label": "User",
+      "description": "User of the other app to authenticate",
+      "required": "true",
+      "type": "text",
+      "visibility": "config.authenticationMethod === 'userPassword'"
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "description": "User's password of the other app to authenticate",
+      "required": "true",
+      "type": "password",
+      "visibility": "config.authenticationMethod === 'userPassword'"
+    },
+    {
+      "name": "apiKey",
+      "label": "API key",
+      "required": "true",
+      "type": "text",
+      "visibility": "config.authenticationMethod == 'apiKey'"
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "label": "Callback",
+      "name": "callback",
+      "description": "Happens when a async process is finished"
+    }
+  ],
   "metadata": [
     {
       "type": "script",
-      "namespace": "users",
-      "path": "/scripts/users.js"
+      "namespace": "api",
+      "path": "/scripts/api.js"
+    },
+    {
+      "type": "script",
+      "namespace": "utils",
+      "path": "/scripts/utils.js"
     },
     {
       "type": "script",

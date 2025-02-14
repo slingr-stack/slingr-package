@@ -1,19 +1,3 @@
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Last Updated</th>
-        <th>Summary</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Slingr package</td>
-        <td>September 1, 2023</td>
-        <td>Detailed description of the Slingr Package.</td>
-    </tr>
-    </tbody>
-</table>
 
 # Overview
 
@@ -162,7 +146,7 @@ pkg.slingr.users.update(user);
 ```
 
 ## Dependencies
-* Utils Package (~v1.0.2)
+* Utils Package
 
 # About SLINGR
 
