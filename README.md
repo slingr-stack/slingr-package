@@ -67,6 +67,11 @@ log(JSON.stringify(pkg.slingr.api.get('/data/entityName/count')));
 log(JSON.stringify(pkg.slingr.api.post('/data/entityName'), {body: {att1: 'val1'}}));
 log(JSON.stringify(pkg.slingr.api.getLogs()));
 log(JSON.stringify(pkg.slingr.api.getJobs()));
+log(JSON.stringify(pkg.slingr.utils.getConfiguration()));
+log(JSON.stringify(pkg.slingr.utils.getConfiguration('appName')));
+// these functions are only available in the runtime, it uses UI messages
+pkg.slingr.ui.openInNewTab('https://slingr.io');
+pkg.slingr.ui.openInCurrentTab('https://slingr.io');
 ```
 
 ## Dependencies
