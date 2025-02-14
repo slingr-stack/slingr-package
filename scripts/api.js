@@ -36,9 +36,21 @@ for (let key in httpDependency) {
  Public API - Generic Functions
  ****************************************************/
 
-exports.testConnection = function () {
+exports.testConnection = function() {
     const path = "/status/system/health";
     return httpService.get(Slingr(checkHttpOptions(path)));
+}
+
+exports.getLogs = function(httpOptions, callbackData, callbacks) {
+    const path = "/status/logs";
+    let options = checkHttpOptions(path, httpOptions);
+    return httpService.get(Slingr(options), callbackData, callbacks);
+}
+
+exports.getJobs = function(httpOptions, callbackData, callbacks) {
+    const path = "/status/jobs";
+    let options = checkHttpOptions(path, httpOptions);
+    return httpService.get(Slingr(options), callbackData, callbacks);
 }
 
 /**
@@ -175,7 +187,7 @@ function setRequestHeaders(options) {
     let headers = options.headers || {};
     if (config.get("authenticationMethod") === "apiKey") {
         sys.logs.debug('[slingr] Set header apikey');
-        headers = mergeJSON(headers, {"Authorization": "API-Key " + config.get("text")});
+        headers = mergeJSON(headers, {"token": config.get("apiKey")});
     }
     if (config.get("authenticationMethod") === "userPassword") {
         headers = mergeJSON(headers, {"token": getAccessTokenForUser()});

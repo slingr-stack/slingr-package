@@ -96,7 +96,7 @@
 			"name": "apiKey",
 			"label": "API key",
 			"required": "true",
-			"type": "text",
+			"type": "password",
 			"visibility": "config.authenticationMethod == 'apiKey'"
 		}
 	],
