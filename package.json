@@ -1,15 +1,41 @@
 {
-  "label": "Slingr Package",
+  "label": "Slingr",
   "name": "slingr",
   "description": "Set of utilities to help with application development in the Slingr low code platform.",
   "dependencies": [
+    {
+      "type": "service",
+      "name": "http",
+      "version": "v1.8.0"
+    },
     {
       "type": "package",
       "name": "utils",
       "version": "^v1.0.2"
     }
   ],
-  "configuration":[],
+  "configuration":[
+    {
+      "name": "authenticationMethod",
+      "label": "Authentication Method",
+      "required": true,
+      "defaultValue": "oauth",
+      "type": "buttonsGroup",
+      "typeOptions": {
+        "allowCustom": false,
+        "possibleValues": [
+          {
+            "label": "Username/Password",
+            "name": "password"
+          },
+          {
+            "label": "API Key",
+            "name": "apiKey"
+          }
+        ]
+      }
+    }
+  ],
   "events": [],
   "metadata": [
     {
