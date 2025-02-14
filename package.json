@@ -22,7 +22,15 @@
 			"typeOptions": {
 				"alertType": "info"
 			},
-			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.<br>They are optional as the package has functionalities on its own."
+			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.They are optional as the package has functionalities on its own."
+		},
+		{
+			"label": "Information",
+			"name": "information2",
+			"type": "alert",
+			"style": "info",
+			"title": "Test",
+			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.They are optional as the package has functionalities on its own."
 		},
 		{
 			"name": "appName",
