@@ -14,6 +14,7 @@
 			"version": "^v1.0.8"
 		}
 	],
+	"configurationBuilder": "/configurationBuilder.js",
 	"configuration": [
 		{
 			"label": "App settings",
