@@ -35,7 +35,7 @@
 			"label": "App env",
 			"required": "!!(config.appName)",
 			"visibility": "!!(config.appName)",
-			"defaultValue": "prod",
+			"value": "prod",
 			"type": "buttonsGroup",
 			"typeOptions": {
 				"allowCustom": false,
@@ -59,7 +59,7 @@
 			"name": "authenticationMethod",
 			"label": "Authentication Method",
 			"required": true,
-			"defaultValue": "userPassword",
+			"value": "userPassword",
 			"type": "buttonsGroup",
 			"typeOptions": {
 				"allowCustom": false,
