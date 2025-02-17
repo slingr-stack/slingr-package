@@ -36,22 +36,37 @@ for (let key in httpDependency) {
  Public API - Generic Functions
  ****************************************************/
 
+/**
+ * Check if the app runtime is running.
+ *
+ * @return {object}             - Object containing the status of the app or a code error.
+ */
 exports.testConnection = function() {
     const path = "/status/system/health";
     return httpService.get(Slingr(checkHttpOptions(path)));
-}
+};
 
+/**
+ * Obtains the logs from the app. This request could be paginated or filtered.
+ *
+ * @return {object}             - List of logs.
+ */
 exports.getLogs = function(httpOptions, callbackData, callbacks) {
     const path = "/status/logs";
     let options = checkHttpOptions(path, httpOptions);
     return httpService.get(Slingr(options), callbackData, callbacks);
-}
+};
 
+/**
+ * Obtains the jobs of the app. This request could be paginated or filtered.
+ *
+ * @return {object}             - List of jobs.
+ */
 exports.getJobs = function(httpOptions, callbackData, callbacks) {
     const path = "/status/jobs";
     let options = checkHttpOptions(path, httpOptions);
     return httpService.get(Slingr(options), callbackData, callbacks);
-}
+};
 
 /**
  * Sends an HTTP GET request to the specified URL with the provided HTTP options.
