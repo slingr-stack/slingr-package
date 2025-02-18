@@ -65,7 +65,6 @@ You can make `GET`,`POST`,`DELETE`,`PUT` and `HEAD` requests to the Runtime API.
 log(JSON.stringify(pkg.slingr.api.testConnection()));
 log(JSON.stringify(pkg.slingr.api.get('/data/entityName/count')));
 log(JSON.stringify(pkg.slingr.api.post('/data/entityName'), {body: {att1: 'val1'}}));
-log(JSON.stringify(pkg.slingr.api.getLogs()));
 log(JSON.stringify(pkg.slingr.api.getJobs()));
 log(JSON.stringify(pkg.slingr.utils.getConfiguration()));
 log(JSON.stringify(pkg.slingr.utils.getConfiguration('appName')));

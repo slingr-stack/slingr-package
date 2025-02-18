@@ -47,17 +47,6 @@ exports.testConnection = function() {
 };
 
 /**
- * Obtains the logs from the app. This request could be paginated or filtered.
- *
- * @return {object}             - List of logs.
- */
-exports.getLogs = function(httpOptions, callbackData, callbacks) {
-    const path = "/status/logs";
-    let options = checkHttpOptions(path, httpOptions);
-    return httpService.get(Slingr(options), callbackData, callbacks);
-};
-
-/**
  * Obtains the jobs of the app. This request could be paginated or filtered.
  *
  * @return {object}             - List of jobs.
