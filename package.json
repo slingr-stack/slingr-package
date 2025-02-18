@@ -1,26 +1,128 @@
 {
-  "label": "Slingr Package",
-  "name": "slingr",
-  "description": "Set of utilities to help with application development in the Slingr low code platform.",
-  "dependencies": [
-    {
-      "type": "package",
-      "name": "utils",
-      "version": "^v1.0.2"
-    }
-  ],
-  "configuration":[],
-  "events": [],
-  "metadata": [
-    {
-      "type": "script",
-      "namespace": "users",
-      "path": "/scripts/users.js"
-    },
-    {
-      "type": "script",
-      "namespace": "ui",
-      "path": "/scripts/ui.js"
-    }
-  ]
+	"label": "Slingr",
+	"name": "slingr",
+	"description": "Set of utilities to help with application development in the Slingr low code platform.",
+	"dependencies": [
+		{
+			"type": "service",
+			"name": "http",
+			"version": "v1.8.0"
+		},
+		{
+			"type": "package",
+			"name": "utils",
+			"version": "v1.0.8"
+		}
+	],
+	"configurationBuilder": "/configurationBuilder.js",
+	"configuration": [
+		{
+			"label": "App settings",
+			"name": "appSettings",
+			"type": "info",
+			"typeOptions": {
+				"alertType": "info"
+			},
+			"value": "Adding these settings allows the package to be able to connect to an external app via the Rest API.They are optional as the package has functionalities on its own."
+		},
+		{
+			"name": "appName",
+			"label": "App name",
+			"type": "text",
+			"required": "!!(config.appName)"
+		},
+		{
+			"name": "appEnv",
+			"label": "App env",
+			"required": "!!(config.appName)",
+			"visibility": "!!(config.appName)",
+			"value": "prod",
+			"type": "buttonsGroup",
+			"typeOptions": {
+				"allowCustom": false,
+				"possibleValues": [
+					{
+						"label": "Development",
+						"name": "dev"
+					},
+					{
+						"label": "Staging",
+						"name": "staging"
+					},
+					{
+						"label": "Production",
+						"name": "prod"
+					}
+				]
+			}
+		},
+		{
+			"name": "authenticationMethod",
+			"label": "Authentication method",
+			"required": "!!(config.appName)",
+			"visibility": "!!(config.appName)",
+			"value": "userPassword",
+			"type": "buttonsGroup",
+			"typeOptions": {
+				"allowCustom": false,
+				"possibleValues": [
+					{
+						"label": "Username/Password",
+						"name": "userPassword"
+					},
+					{
+						"label": "API Key",
+						"name": "apiKey"
+					}
+				]
+			}
+		},
+		{
+			"name": "user",
+			"label": "User",
+			"description": "User of the other app to authenticate",
+			"required": "true",
+			"type": "text",
+			"visibility": "config.authenticationMethod === 'userPassword'"
+		},
+		{
+			"name": "password",
+			"label": "Password",
+			"description": "User's password of the other app to authenticate",
+			"required": "true",
+			"type": "password",
+			"visibility": "config.authenticationMethod === 'userPassword'"
+		},
+		{
+			"name": "apiKey",
+			"label": "API key",
+			"required": "true",
+			"type": "password",
+			"visibility": "config.authenticationMethod == 'apiKey'"
+		}
+	],
+	"events": [
+		{
+			"label": "Callback",
+			"name": "callback",
+			"description": "Happens when a async process is finished"
+		}
+	],
+	"metadata": [
+		{
+			"type": "script",
+			"namespace": "api",
+			"path": "/scripts/api.js"
+		},
+		{
+			"type": "script",
+			"namespace": "utils",
+			"path": "/scripts/utils.js"
+		},
+		{
+			"type": "script",
+			"namespace": "ui",
+			"path": "/scripts/ui.js"
+		}
+	]
 }
